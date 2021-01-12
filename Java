@@ -1,44 +1,55 @@
 import java.util.Scanner; 
-import java.text.NumberFormat;
-class student{   
+    class Student{
+        String name;
+        String id;
+        int hours = 0;
+
+        public Student(String name, String id){
+            this.name = name;
+            this.id = id;
+        }
+
+        public void addHours(double hours){
+            this.hours += hours;
+        }
+
+        public double getHoursAsPercentage(double totalHours){
+            return hours * 100.0 / totalHours;
+        }
+    }
+class Main{   
 	
 	public static void main(String args[]) { 
 	
 		Scanner s = new Scanner(System.in); 
 		String newline = System.lineSeparator(); 
-		NumberFormat defaultFormat = NumberFormat.getPercentInstance();
-		defaultFormat.setMinimumFractionDigits(2);
-		
-		String id[] = new String[100]; 
-		String name[] = new String[100]; 
-		double time[] = new double[100]; 
-		String module;
-		double total = 0;
 	
-		System.out.println("Please enter the Module name:");
-		module = s.nextLine();
+	System.out.println("Please enter the Module name:");
+		String module = s.nextLine();
 		
 	System.out.println(newline);
 	
 		System.out.println(module+" Attendance Calculation");
 		
 	System.out.println(newline);
-		
-		System.out.println("Please enter the number of students:");
-		int n = s.nextInt();
-		
-		
-		for(int i=0; i<n; i++){
-		 System.out.println(newline);
-			System.out.print("Enter Student name # "+(i+1)+": "); 
-            name[i] = s.next(); 
-		
-	
-			 
-			System.out.print("Enter Student ID # "+(i+1)+": ");
-            id[i] = s.next();
-             
-		
+
+	System.out.println("Please enter the number of students:");
+	int n = s.nextInt();
+
+	Student[] students = new Student[n];
+
+	for (int i=0; i<n; i++){
+
+    System.out.println(newline);
+    System.out.print("Enter Student name # " + (i + 1) + ": ");
+    String name = s.next();
+
+    System.out.print("Enter Student ID # " + (i + 1) + ": ");
+    String id = s.next();
+
+    students[i] = new Student(name, id);
+    
+    
 	System.out.println(newline);
 			
 		
@@ -47,34 +58,27 @@ class student{
 		
 		
 		
-		
       	for(int t=0; t<w; t++) {
       	
           
         	System.out.print("Attendance for week # "+(t+1)+": ");
-        	time[t] = s.nextDouble(); 
-        
+        	double hours = s.nextDouble(); 
+        	students[i].addHours(t,hours);
+      	}
+	
         	
-      }
+  	
+        for(int t=0; t<n; t++){
 
-
-        
-        for(int t=0; t<w; t++){
-
-          total = total + time[t];
-
-        }          
-        double average = total / w;
-        double perc = average*10;
-       
+       students[i].addHours(double totalHours);
 	System.out.println(newline);
 		
-		System.out.println("Total hours present: "+total+" Hours");
-		System.out.println("Total hours conducted: "+(4*w)+" Hours");
-		System.out.printf("Overall attandence is : %.2f%%%n", perc);
+		System.out.println("Total hours present: "+ students[t].addHours()+ "Hours");
+		System.out.println("Total hours conducted: "+(4*w)+"Hours");
+		System.out.printf("Overall attandence is : %.2f%%%n"+students[t].getHoursAsPercentage());
 		
 		
-		if (perc>=55) {
+		if (students[i].getHoursAsPercentage()>=55) {
 			System.out.println("Your attandance is above 55%, your grades are accepted");
 		}
 		else {
@@ -83,5 +87,4 @@ class student{
 }
 }
 }
-
-        
+}
