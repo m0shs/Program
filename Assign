@@ -1,0 +1,117 @@
+	import java.util.Scanner;  //importing scanner java package for input
+	import java.io.*;  /* importing java package to provide a set of input & output streams 
+						* used to write and read data to files or other input and output sources.
+						*/
+	    class Student{ //Student class containing variables and subfunctions
+	        String name; //initializing variables 
+	        String id;
+	        int hours = 0; //initializing to zero
+	
+	        public Student(String name, String id){  //paramiterized constructor
+	            this.name = name; //initialized variables to input paramateres 
+	            this.id = id;
+	        }
+	
+	        public void addHours(double hours){
+	            this.hours += hours;
+	        }
+	
+	        public double getHoursAsPercentage(double totalHours){
+	            return hours * 100.0 / totalHours;
+	        }
+	    }
+	    interface A{
+		public void display();
+			
+	    }
+	class B implements A {
+		public void display() {
+			System.out.println("Your attendance is above 55%, your grades are accepted");
+		}
+	}
+	class C implements A {
+		public void display() {
+			System.out.println("Your attendance is below 55%, you are marked as absent");
+	    }
+	}
+	
+	
+	class Assignment2{   
+		
+		public static void main(String args[]) { 
+		
+			Scanner s = new Scanner(System.in); 
+			String newline = System.lineSeparator(); 
+		
+		System.out.println("Please enter the Module name:");
+			String module = s.nextLine();
+			
+		System.out.println(newline);
+		
+		System.out.println("==========================");
+			System.out.println(module+" Attendance Calculation");
+		System.out.println("==========================");
+		
+		System.out.println(newline);
+	
+		System.out.println("Please enter the number of students:");
+		int n = s.nextInt();
+	
+		Student[] students = new Student[n];
+	
+		for (int i=0; i<n; i++){
+	
+	    System.out.println(newline);
+	    
+	    System.out.print("Enter Student name # " + (i + 1) + ": ");
+	    String name = s.next();
+	
+	    System.out.print("Enter Student ID # " + (i + 1) + ": ");
+	    String id = s.next();
+	
+	    students[i] = new Student(name, id);
+	    
+		System.out.println(newline);
+			
+			while (true) {
+		       
+		       try {
+		       
+				System.out.println("Enter Number of weeks: ");
+				int w = Integer.parseInt(s.next());
+		         
+			
+			for(int t=0; t<w; t++) {
+	      	
+	          
+	        	System.out.print("Attendance for week # "+(t+1)+": ");
+	        	double hours = s.nextDouble(); 
+	        	students[i].addHours(hours);
+	      	}
+		
+		System.out.println(newline);
+			
+			System.out.println("Total hours present: "+ students[i].hours+ " Hours");
+			System.out.println("Total hours conducted: "+(4*w)+" Hours");
+			System.out.printf("Overall attandence is : %.2f%%%n",students[i].getHoursAsPercentage(4 * w));
+			
+			
+			B obj = new B();	
+			C obj1 = new C();
+			
+	
+			if (students[i].getHoursAsPercentage(4 * w)>=55) {
+				obj.display();
+			}
+			else {
+				obj1.display();
+			}
+			break;
+		       } catch (NumberFormatException nfe){
+		       	System.out.println("Invalid format, Please enter an Integer number");
+		       }
+		       }
+	}
+			}
+		}
+	
