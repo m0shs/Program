@@ -1,40 +1,42 @@
-	
-			import java.io.*;
-			import java.util.Scanner;
+import java.io.*; /* importing java package to provide a set of input & output streams 
+						* used to write and read data to files or other input and output sources.
+						*/
+			import java.util.Scanner;  //importing scanner java package for input
 			
-			public class Fileopener {
+			public class Fileopener { //save file as "Fileopener.java"
 			
-				public static void main(String[] args) {
-			try {
+				public static void main(String[] args) { //main function
+			try { //creating exception handling 
+					Scanner input=new Scanner(System.in);  
 					System.out.println("Enter filename to be read");
-				    Scanner input=new Scanner(System.in);
-			        String fileName = input.next();
-			 		int i;
-					FileInputStream fi = new FileInputStream(fileName);
+				   
+			        String fileName = input.next(); //accepting file name from user
+			 		int i; //initializing value 
+			 		
+					FileInputStream fi = new FileInputStream(fileName); // Get the object of DataInputStream
 					
-					System.out.println();
-					System.out.println(fileName+" has the following code:");
+					System.out.println(); //line break 
+					System.out.println(fileName+" has the following code:"); //displaying the file name
 			
-					BufferedReader brTest = new BufferedReader(new FileReader(fileName));
-			  		String text = brTest .readLine();
-			  			
+					BufferedReader brTest = new BufferedReader(new FileReader(fileName)); 
+			  		String text = brTest .readLine();   //method to Read First line of the file
 			  	
-			  		
+			  //method to read the entire file and displaying it 		
 			do {
 				i = fi.read();
-				if (i != -1)
+				if (i != -1) //-1 is the end of the file 
 					System.out.print((char)i);
 			} while (i != -1);
 				System.out.println("\n");
 		
 			
-			System.out.println("First sentence is : " + text);
-				} catch (FileNotFoundException fe) {
-					System.out.println("File is not found");
+			System.out.println("First sentence is : " + text); //displaying first line of text
+				} catch (FileNotFoundException fe) { //catching and declaring type of exception
+					System.out.println("File is not found"); //displays this if file does not exist or in wrong format
 				}
 					
-				 catch (IOException e) {
-					System.out.println("Error reading file");
+				 catch (IOException e) { //catching and declaring type of exception
+					System.out.println("Error reading file"); //displays this incase the file is unreadable 
 					}
 					
 			}
