@@ -1,4 +1,4 @@
-	import java.util.Scanner;  //importing scanner java package for input
+		import java.util.Scanner;  //importing scanner java package for input
 	import java.io.*;  /* importing java package to provide a set of input & output streams 
 						* used to write and read data to files or other input and output sources.
 						*/
@@ -12,106 +12,121 @@
 	            this.id = id;
 	        }
 	
-	        public void addHours(double hours){
-	            this.hours += hours;
+	        public void addHours(double hours){ //function addHours containing 1 parameters
+	            this.hours += hours; //addition 
 	        }
 	
-	        public double getHoursAsPercentage(double totalHours){
+	        public double getHoursAsPercentage(double totalHours){ //function to calculate the % of hrs
 	            return hours * 100.0 / totalHours;
 	        }
 	    }
-	    interface A{
-		public void display();
+	    interface A{ //creating an interface for % if statement outcome
+		public void display(); //declaring the method, no instance veriable allowed here
 			
 	    }
-	class B implements A {
-		public void display() {
+	class B implements A { //a class implements interface 
+		public void display() { //implementation of abstract method
 			System.out.println("Your attendance is above 55%, your grades are accepted");
 		}
 	}
-	class C implements A {
+	class C implements A { //another class implements interface 
 		public void display() {
 			System.out.println("Your attendance is below 55%, you are marked as absent");
 	    }
 	}
 	
 	
-	class Assignment2{   
+	class Assignment2{    //Save as "Assignment2.java"
 		
-		public static void main(String args[]) { 
+		public static void main(String args[]) { //main function 
 		
-			Scanner s = new Scanner(System.in); 
-			String newline = System.lineSeparator(); 
+			Scanner s = new Scanner(System.in); //declaring scanner to accept input from user 
+			String newline = System.lineSeparator(); //returns value of the system property to allow line break. 
 		
-		System.out.println("Please enter the Module name:");
-			String module = s.nextLine();
+		System.out.println("Please enter the Module name:"); 
+			String module = s.nextLine(); //Accepting String text from user to input module name
 			
-		System.out.println(newline);
+		System.out.println(newline); //line break
 		
 		System.out.println("==========================");
-			System.out.println(module+" Attendance Calculation");
+			System.out.println(module+" Attendance Calculation"); //displays the module name
 		System.out.println("==========================");
 		
-		System.out.println(newline);
+		System.out.println(newline); //line break
 	
 		System.out.println("Please enter the number of students:");
-		int n = s.nextInt();
+		int n = s.nextInt(); //Accepts value from user to input the desired number of students that wishes to calculate
 	
-		Student[] students = new Student[n];
+		Student[] students = new Student[n]; //array with n numbers returns on the value that was input
 	
-		for (int i=0; i<n; i++){
+		for (int i=0; i<n; i++){ //looping to display the student info according to the n numbers that was input by user
 	
 	    System.out.println(newline);
 	    
 	    System.out.print("Enter Student name # " + (i + 1) + ": ");
-	    String name = s.next();
+	    String name = s.next(); //accepts input from user by writing the name
 	
 	    System.out.print("Enter Student ID # " + (i + 1) + ": ");
-	    String id = s.next();
+	    String id = s.next(); //accepts input from user by writing the ID
 	
-	    students[i] = new Student(name, id);
+	    students[i] = new Student(name, id); //method calling of two parameters
 	    
 		System.out.println(newline);
 			
-			while (true) {
+			while (true) { //program will keep running until it meets the condition
 		       
-		       try {
+		       try { //creating excpetion handling 
 		       
 				System.out.println("Enter Number of weeks: ");
-				int w = Integer.parseInt(s.next());
+				int w = Integer.parseInt(s.next()); //accepts the nnumber of weeks that wished to be calculated
 		         
 			
-			for(int t=0; t<w; t++) {
+			for(int t=0; t<w; t++) { //looping to accept the n number of weeks hrs
 	      	
 	          
 	        	System.out.print("Attendance for week # "+(t+1)+": ");
-	        	double hours = s.nextDouble(); 
-	        	students[i].addHours(hours);
+	        	double hours = s.nextDouble();  //asks for double value to input the attended hrs by student
+	        	students[i].addHours(hours); //calling method of a single parameter
 	      	}
 		
 		System.out.println(newline);
-			
+			//displaying the output of the students information such as the hours present, conducted and %
 			System.out.println("Total hours present: "+ students[i].hours+ " Hours");
 			System.out.println("Total hours conducted: "+(4*w)+" Hours");
 			System.out.printf("Overall attandence is : %.2f%%%n",students[i].getHoursAsPercentage(4 * w));
+			   /* method calling for calc of % and the %.2f is given to display 2 digits
+         * after decimal point.
+         */
+         
 			
-			
-			B obj = new B();	
-			C obj1 = new C();
+			B obj = new B(); //creating obj using the class itself 	
+			C obj1 = new C(); //creating another obj using itself
 			
 	
 			if (students[i].getHoursAsPercentage(4 * w)>=55) {
-				obj.display();
+				obj.display(); //calling the function of class B which displays the % statement 
 			}
 			else {
-				obj1.display();
+				obj1.display(); //calling the function of class C which displays the other % case
 			}
-			break;
-		       } catch (NumberFormatException nfe){
+			break; //stops looping when condition is met
+		       } catch (NumberFormatException nfe){ //catching and declaring type of exception if any when entering the n of weeks
 		       	System.out.println("Invalid format, Please enter an Integer number");
 		       }
 		       }
 	}
 			}
 		}
+	
+	
+		
+	
+	
+
+
+
+        
+
+
+        
 	
